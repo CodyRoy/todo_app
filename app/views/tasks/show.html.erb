@@ -7,8 +7,18 @@
 
 <p>
   <strong>List:</strong>
-  <%= @task.list_id %>
+  <%= @task.list.title %>
 </p>
 
-<%= link_to 'Edit', edit_task_path(@task) %> |
-<%= link_to 'Back', tasks_path %>
+<p>
+  <strong>Steps:</strong>
+  <%@task.steps.each do |step| %>
+    <p>
+      <%=step.content%> | 
+      <%=link_to 'Details', list_task_step_path(@task,step)%> |  
+      <%=link_to 'Edit', edit_list_task_step_path(@task,step)%>
+    </p>
+  <%end%>
+</p>
+<%= link_to 'Edit', edit_list_task_path(@task) %> |
+<%= link_to 'Back', @task.list %>
