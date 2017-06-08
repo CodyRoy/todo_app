@@ -19,6 +19,9 @@ class StepsController < ApplicationController
 
   # GET /steps/1/edit
   def edit
+    @list = List.find params[:list_id]
+    @task = Task.find params[:task_id]
+    @step = Step.find params[:id]
   end
 
   # POST /steps
@@ -42,7 +45,7 @@ class StepsController < ApplicationController
   def update
     respond_to do |format|
       if @step.update(step_params)
-        format.html { redirect_to @step, notice: 'Step was successfully updated.' }
+        format.html { redirect_to :list_task_step, notice: 'Step was successfully updated.' }
         format.json { render :show, status: :ok, location: @step }
       else
         format.html { render :edit }
