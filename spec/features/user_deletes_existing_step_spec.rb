@@ -9,9 +9,7 @@ feature "user deletes existing step" do
 
 	scenario "successfully" do
 		visit list_task_path(@list,@task)
-		click_on "Remove"
-		click_on "OK"
-		@step.should be_nil
+		expect { click_on("Remove") }.to change(Step, :count).by(-1)
 	end
 
 	after(:each) do

@@ -60,9 +60,11 @@ class StepsController < ApplicationController
   # DELETE /steps/1
   # DELETE /steps/1.json
   def destroy
+	task = @step.task
+	list = @step.task.list
     @step.destroy
     respond_to do |format|
-      format.html { redirect_to steps_url, notice: 'Step was successfully destroyed.' }
+	    format.html { redirect_to [list, task], notice: 'Step was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
