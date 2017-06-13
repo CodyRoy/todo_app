@@ -16,7 +16,6 @@ feature "user creates a new step" do
 	end
 	after(:each) do
 		Task.destroy_all
-		@list.title
 		List.destroy_all
 	end
 end
