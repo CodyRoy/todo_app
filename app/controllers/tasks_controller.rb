@@ -10,11 +10,14 @@ class TasksController < ApplicationController
   # GET /tasks/1
   # GET /tasks/1.json
   def show
+    @list = List.find params[:list_id]
+    @task = Task.find params[:id]
   end
 
   # GET /tasks/new
   def new
     @task = Task.new
+    @list = List.find params[:list_id]    
   end
 
   # GET /tasks/1/edit
@@ -30,7 +33,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
-        format.html { redirect_to @task, notice: 'Task was successfully created.' }
+        format.html { redirect_to [@task.list,@task] , notice: 'Task was successfully created.' }
         format.json { render :show, status: :created, location: @task }
       else
         format.html { render :new }
@@ -44,7 +47,7 @@ class TasksController < ApplicationController
   def update
     respond_to do |format|
       if @task.update(task_params)
-        format.html { redirect_to :list_task, notice: 'Task was successfully updated.' }
+        format.html { redirect_to [@task.list,@task] , notice: 'Task was successfully updated.' }
         format.json { render :show, status: :ok, location: @task }
       else
         format.html { render :edit }
@@ -58,7 +61,7 @@ class TasksController < ApplicationController
   def destroy
     @task.destroy
     respond_to do |format|
-      format.html { redirect_to tasks_url, notice: 'Task was successfully destroyed.' }
+      format.html { redirect_to [@task.list], notice: 'Task was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

@@ -15,6 +15,9 @@ class StepsController < ApplicationController
   # GET /steps/new
   def new
     @step = Step.new
+    @task = Task.find params[:task_id]
+    @list = List.find params[:list_id]
+	    
   end
 
   # GET /steps/1/edit
@@ -31,7 +34,7 @@ class StepsController < ApplicationController
 
     respond_to do |format|
       if @step.save
-        format.html { redirect_to @step, notice: 'Step was successfully created.' }
+	      format.html { redirect_to [@step.task.list, @step.task, @step], notice: 'Step was successfully created.' }
         format.json { render :show, status: :created, location: @step }
       else
         format.html { render :new }
