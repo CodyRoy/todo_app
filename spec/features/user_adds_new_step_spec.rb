@@ -15,7 +15,7 @@ feature "user creates a new step" do
 		expect(page).to have_css "p", text: "next step"
 	end
 	after(:each) do
-		@list.destroy
-		@task.destroy
+		Task.destroy_all
+		List.destroy_all
 	end
 end

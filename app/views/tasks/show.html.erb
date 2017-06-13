@@ -15,8 +15,9 @@
   <%@task.steps.each do |step| %>
     <p>
       <%=step.content%> | 
-      <%=link_to 'Details', list_task_step_path(@task.list, @task,step)%> |  
-      <%=link_to 'Edit', edit_list_task_step_path(@task.list, @task,step)%>
+      <%=link_to 'Details', list_task_step_path(@task.list, @task, step)%> |  
+      <%=link_to 'Edit', edit_list_task_step_path(@task.list, @task, step)%>
+      <%=link_to 'Remove', list_task_step_path(@task.list, @task, step), method: :delete %> 
     </p>
   <%end%>
 </p>

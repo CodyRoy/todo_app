@@ -3,4 +3,4 @@
 <%= render 'form', step: @step %>
 
 <%= link_to 'Show', list_task_step_path %> |
-<%= link_to 'Back', list_task_path %>
+<%= link_to 'Back', [@step.task.list, @step.task] %>
